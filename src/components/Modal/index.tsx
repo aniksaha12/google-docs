@@ -17,8 +17,6 @@ const ModalComponents: React.FC<ModalProps> = ({
       <Button size='large' type="primary" onClick={handlelogin}>
         {title}
       </Button>
-    
-  
     </>
   );
 };
