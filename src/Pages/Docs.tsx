@@ -2,7 +2,7 @@ import React from 'react';
 import ModalComponents from '../components/Modal';
 import { loginwithgoogle } from "../API/Auth";
 import useCheckAuth from '../Hooks/useCheckAuth';
-import Topbar from '../components/Topbar';
+import Document from '../components/Document';
 
 const  Docs: React.FC = () => {
     const handlelogin = () => {
@@ -20,7 +20,8 @@ const  Docs: React.FC = () => {
         >
        </ModalComponents>: 
        <>
-       <Topbar photoURL={userData?.photoURL}/>
+       <Document photoURL={userData?.photoURL}/>
+       
        </>
        }
     </div>
