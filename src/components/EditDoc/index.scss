@@ -1,0 +1,26 @@
+.edit-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+
+.react-icons{
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+}
+.quill-container{
+    margin-top: 60px;
+    width: 95%;
+}
+.ql-toolbar.ql-snow{
+    border: none !important;
+    outline: none !important;
+}
+
+.ql-container {
+    border: none !important;
+    outline: none !important;
+}
+
+}
