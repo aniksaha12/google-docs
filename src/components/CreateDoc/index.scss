@@ -1,0 +1,24 @@
+.new-doc-container{
+    background-color: rgb(238, 233, 233);
+    display: flex;
+    justify-content: center;
+    font-family: 'Noto Serif', serif;
+    font-family: 'Roboto', sans-serif;
+
+    .new-doc-inner{
+        width: 70%;
+
+    .start-doc{
+        width: 150px;
+        cursor: pointer;
+        border: 1px solid #acacac;
+        border-radius: 3px;
+    }
+    .start-doc:hover {
+        border: 1px solid #2867ee;
+    }
+    .title{
+        margin-top: 5px;
+    }
+    }
+}
