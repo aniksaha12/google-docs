@@ -3,12 +3,30 @@ import "./index.scss";
 import {BiArrowBack} from "react-icons/bi";
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "../../Toolbar";
+import { editDoc } from "../../API/Firestore";
+
 
 export default function EditDoc({handleEdit}: functionInterface) {
 
     let quillRef = useRef<any>(null);
 
     const [value, setValue] = useState('');
+
+    function editDocument() {
+      let payload = {
+        value,
+      }
+      editDoc(payload, id)
+    }
+
+    useEffect (() => {
+      const debounced = setTimeout(() => {
+        editDocument();
+      }, 2000 );
+
+      return () => clearTimeout(debounced)
+
+    }, [value])
 
     useEffect(() => {
         quillRef.current.focus()
