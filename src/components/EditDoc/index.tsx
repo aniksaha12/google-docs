@@ -6,11 +6,12 @@ import EditorToolbar, { modules, formats } from "../../Toolbar";
 import { editDoc } from "../../API/Firestore";
 
 
-export default function EditDoc({handleEdit}: functionInterface) {
+export default function EditDoc({handleEdit, id}: functionInterface) {
 
     let quillRef = useRef<any>(null);
 
     const [value, setValue] = useState('');
+    const [title, setTitle] = useState("");
 
     function editDocument() {
       let payload = {
@@ -35,6 +36,9 @@ export default function EditDoc({handleEdit}: functionInterface) {
   return (
     <div className="edit-container">
       <BiArrowBack onClick={handleEdit} size={30} className="react-icons"/>
+
+      <input className="title-input" placeholder="Untitled" onChange={(event) => {setTitle(event.target.value)}} value={title}/>
+
       <div className="quill-container">
       <EditorToolbar/>
       <ReactQuill 

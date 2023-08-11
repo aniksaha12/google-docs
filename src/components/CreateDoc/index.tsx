@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
 import './index.scss';
 import addDoc from "../../assets/addDoc.png";
 import EditDoc from '../EditDoc';
 import { createDoc } from '../../API/Firestore';
 
+type isEditType = {
+  isEdit: boolean;
+  handleEdit: () => void;
+  id: string;
+}
 
-export default function CreateDoc() {
 
-    const [isEdit, setIsEdit] = useState(false);
-
-    const handleEdit = () => {
-        setIsEdit(!isEdit);
-    };
+export default function CreateDoc({handleEdit, isEdit, id}: isEditType) {
 
     const createDocument = async() => {
       try {
@@ -23,10 +22,10 @@ export default function CreateDoc() {
     } catch (error) {
       console.log('Error creating doc', error);
     }
-
+ 
   };
 
-    if(isEdit) return <EditDoc handleEdit={handleEdit}/>
+    if(isEdit) return <EditDoc handleEdit={handleEdit} id={id}/>
 
   return (
     <div className='new-doc-container'>

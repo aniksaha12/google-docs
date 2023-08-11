@@ -9,8 +9,19 @@
     position: absolute;
     left: 20px;
 }
-.quill-container{
+.title-input{
+    background-color: transparent;
+    position: absolute;
+    left: 50px;
     margin-top: 60px;
+    outline: none;
+    border: none;
+    color: black;
+    
+}
+
+.quill-container{
+    margin-top: 100px;
     width: 95%;
     font-size: 30px;
 }
