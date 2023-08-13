@@ -3,16 +3,18 @@ import { getDocuments } from "../../API/Firestore";
 import { useEffect, useState} from "react";
 
 type OpenDocType = {
-    openDoc: (id: string) => void;
+    openDoc: (id: string, value: string, title: string) => void;
 }
 
 export default function DocsList({openDoc}: OpenDocType) {
-
-    const[docs, setDocs] = useState([{
+    const[docs, setDocs] = useState([
+      {
+        title:'',
         id: '',
         username: '',
         value: '',
-    }]);
+      }
+  ]);
 
     const getDocs = async () => {
         await getDocuments(setDocs);
@@ -25,7 +27,10 @@ export default function DocsList({openDoc}: OpenDocType) {
   return (
     <div className="doc-main">
       {docs.map((doc) => {
-        return <div onClick={()=> openDoc(doc.id)} className="doc-cart">{docs.value}</div>
+        return <div onClick={()=> openDoc(doc.id, doc.value, doc.title)} className="doc-cart">
+          <p className="doc-content" dangerouslySetInnerHTML={{ __html: `${doc.value.substring(0, 200)}..` }}></p>
+          <p className="doc-title"> {doc.title} </p>
+          </div>
       })}
     </div>
   )

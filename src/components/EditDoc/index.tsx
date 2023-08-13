@@ -3,23 +3,32 @@ import "./index.scss";
 import {BiArrowBack} from "react-icons/bi";
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "../../Toolbar";
-import { editDoc } from "../../API/Firestore";
+import { editDoc , getCurrentDoc} from "../../API/Firestore";
 
 
-export default function EditDoc({handleEdit, id}: functionInterface) {
+export default function EditDoc({handleEdit, id }: functionInterface) {
 
     let quillRef = useRef<any>(null);
 
     const [value, setValue] = useState('');
     const [title, setTitle] = useState("");
+    const [currentDocument, setCurrentDocument] = useState({
+      title: "",
+      value: "",
+    });
 
     function editDocument() {
       let payload = {
         value,
-      }
+        title,
+      };
       editDoc(payload, id)
     }
 
+    const getCurrentDocument =() =>{
+      getCurrentDoc(id,setCurrentDocument)
+    }
+  
     useEffect (() => {
       const debounced = setTimeout(() => {
         editDocument();
@@ -27,17 +36,33 @@ export default function EditDoc({handleEdit, id}: functionInterface) {
 
       return () => clearTimeout(debounced)
 
-    }, [value])
+    }, [value, title])
 
     useEffect(() => {
-        quillRef.current.focus()
-    }, [])
+      getCurrentDocument();
+        quillRef.current.focus();
+
+        return () => {
+          setCurrentDocument({
+            title: "",
+            value : "",
+          })
+        }
+
+    }, []);
+
+    useEffect(() => {
+      setTitle(currentDocument.title);
+      setValue(currentDocument.value);
+    }, [currentDocument]);
+
+   
 
   return (
     <div className="edit-container">
       <BiArrowBack onClick={handleEdit} size={30} className="react-icons"/>
 
-      <input className="title-input" placeholder="Untitled" onChange={(event) => {setTitle(event.target.value)}} value={title}/>
+      <input className="title-input" placeholder="Untitled" onChange={(event) => {setTitle(event?.target.value)}} value={title}/>
 
       <div className="quill-container">
       <EditorToolbar/>

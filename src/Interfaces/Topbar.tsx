@@ -4,7 +4,8 @@ interface TopbarProps {
 
 interface functionInterface {
     id: string;
-    handleEdit: () => void
+    handleEdit: () => void;
+    
 };
 
 interface setterDoc {

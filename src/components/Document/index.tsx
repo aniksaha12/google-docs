@@ -4,6 +4,7 @@ import CreateDoc from '../CreateDoc';
 import DocsList from '../DocsList';
 import { useState } from 'react';
 
+
 export default function Document({photoURL} : TopbarProps) {
 
   const [isEdit, setIsEdit] = useState(false);
@@ -12,7 +13,8 @@ export default function Document({photoURL} : TopbarProps) {
   const openDoc = (id: string) => {
     setIsEdit(true);
     setId(id);
-  }
+  };
+
 
   const handleEdit = () => {
       setIsEdit(!isEdit);
@@ -21,7 +23,11 @@ export default function Document({photoURL} : TopbarProps) {
   return (
     <div>
       <Topbar photoURL={photoURL}/>
-      <CreateDoc isEdit={isEdit} handleEdit={handleEdit} id= {id} />
+      <CreateDoc 
+        isEdit={isEdit} 
+        handleEdit={handleEdit} 
+        id= {id} 
+      />
       { isEdit ? <></> : <DocsList openDoc={openDoc}/>}
     </div>
   )

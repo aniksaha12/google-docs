@@ -7,25 +7,23 @@ type isEditType = {
   isEdit: boolean;
   handleEdit: () => void;
   id: string;
-}
+ 
+};
 
 
 export default function CreateDoc({handleEdit, isEdit, id}: isEditType) {
 
-    const createDocument = async() => {
-      try {
+    const createDocument = () => {
+    
       let payload = {
-        value: '',
+        title: "Untitled",
+        value: "",
       };
-        await createDoc(payload);
-      handleEdit();
-    } catch (error) {
-      console.log('Error creating doc', error);
-    }
+       createDoc(payload);
  
   };
 
-    if(isEdit) return <EditDoc handleEdit={handleEdit} id={id}/>
+    if(isEdit) return <EditDoc  handleEdit={handleEdit} id={id}/>
 
   return (
     <div className='new-doc-container'>
