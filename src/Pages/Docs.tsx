@@ -15,11 +15,13 @@ const  Docs: React.FC = () => {
   return (
     <div className='docs-container'>
       {!isAuthenticated ? (
+
       <ModalComponents 
+
         title='Login with Google' 
         handlelogin={handlelogin}
-        >
-       </ModalComponents>
+        />
+       
       ): (
        <>
        <Document photoURL={userData?.photoURL}/>
