@@ -41,14 +41,6 @@ export default function EditDoc({handleEdit, id }: functionInterface) {
     useEffect(() => {
       getCurrentDocument();
         quillRef.current.focus();
-
-        return () => {
-          setCurrentDocument({
-            title: "",
-            value : "",
-          })
-        }
-
     }, []);
 
     useEffect(() => {
